@@ -1,0 +1,245 @@
+
+# Created by https://www.gitignore.io/api/c,c++,keil,linux,windows,assembler,visualstudiocode,iarembeddedworkbench
+# Edit at https://www.gitignore.io/?templates=c,c++,keil,linux,windows,assembler,visualstudiocode,iarembeddedworkbench
+
+### Assembler ###
+*.exe
+*.o
+*.obj
+*.bc
+
+### C ###
+# Prerequisites
+*.d
+
+# Object files
+*.ko
+*.elf
+
+# Linker output
+*.ilk
+*.map
+*.exp
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+
+### C++ ###
+# Prerequisites
+
+# Compiled Object files
+*.slo
+
+# Precompiled Headers
+
+# Compiled Dynamic libraries
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+
+# Executables
+
+### IAREmbeddedWorkBench ###
+# IAR C-STAT and C-RUN
+# Comment this out if you use C-Stat or C-Run to compile/analyze your project
+*.ewt
+
+# IAR Debugger files
+*.ewd
+
+# IAR Workspace files
+*.eww
+
+# IAR Settings
+**/settings/*.crun
+**/settings/*.dbgdt
+**/settings/*.cspy
+**/settings/*.cspy.*
+**/settings/*.xcl
+**/settings/*.dni
+**/settings/*.wsdt
+**/settings/*.wspos
+
+# IAR Debug Exe
+**/Debug/Exe/
+
+# IAR Debug List
+**/Debug/List
+
+# IAR Debug Obj
+**/Obj/*.pbd
+**/Obj/*.pbd.*
+**/Obj/*.pbi
+**/Obj/*.pbi.*
+
+# Log files
+**.log
+
+# IAR backup files
+Backup*
+
+# IAR .dep files
+*.dep
+
+# Compiled Binaries
+*.bin
+
+# Trash files
+*.bak
+
+### Keil ###
+# something maybe need to add
+# *.bat  # generate batch file
+# output/project_name # uv project generate without file ext
+# *.SRC # generate source file
+# *.src
+
+# Prerequisites
+# Object files
+*.OBJ
+
+# Listing Files
+*.COD
+*.cod
+*.[Ii]
+*.LST
+*.lst
+*.MAP
+*.[Mm]51
+*.[Mm]66
+*.SCR
+*.scr
+
+# LINK output
+*.ABS
+
+# Libraries
+*.LIB
+
+
+# uv output
+*.lnp
+*.build_log.htm
+*.HEX
+
+
+# Build Files
+*._IA
+*.__[Ii]
+*._[Ii][Ii]
+
+# project
+*.uvgui.*
+*.uvguix.*
+
+
+### Linux ###
+*~
+
+# temporary files which can be created if a process still has a handle open of a deleted file
+.fuse_hidden*
+
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+# .nfs files are created when an open file is removed but is still being accessed
+.nfs*
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+
+### Windows ###
+# Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+
+# Dump file
+*.stackdump
+
+# Folder config file
+[Dd]esktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# End of https://www.gitignore.io/api/c,c++,keil,linux,windows,assembler,visualstudiocode,iarembeddedworkbench
+
+# Exceptions
+# allow softdevice .hex
+!components/softdevice/*/hex/*.hex
+!components/softdevice/mbr/*/hex/*.hex
+
+# allow bundled libraries
+!components/802_15_4/raw/*.a
+!components/802_15_4/raw/*.lib
+!components/802_15_4/secure/*.a
+!components/802_15_4/secure/*.lib
+!components/nfc/t2t_lib/*.a
+!components/nfc/t2t_lib/*.lib
+!components/proprietary_rf/gzll/*/*.a
+!components/proprietary_rf/gzll/*/*.lib
+!components/toolchain/cmsis/dsp/*/.a
+!components/toolchain/cmsis/dsp/*/.lib
+!external/nrf_cc310/lib/*.a
+!external/nrf_cc310/lib/*.lib
+!external/nrf_cc310_bl/lib/*.a
+!external/nrf_cc310_bl/lib/*.lib
+!external/nrf_oberon/lib/*/*.a
+!external/nrf_oberon/lib/*/*.lib
+
+# allow microecc library
+!external/micro-ecc/*/armgcc/*.a
+!external/micro-ecc/*/armgcc/*.lib
