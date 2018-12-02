@@ -265,8 +265,8 @@ ret_code_t nrf_gfx_line_draw(nrf_lcd_t const * p_instance,
     if ((p_line->x_start == p_line->x_end) || (p_line->y_start == p_line->y_end))
     {
         rect_draw(p_instance,
-                  p_line->x_start,
-                  p_line->y_start,
+                  MIN(p_line->x_start, p_line->x_end),
+                  MIN(p_line->y_start, p_line->y_end),
                   abs(p_line->x_end - p_line->x_start) + x_thick,
                   abs(p_line->y_end - p_line->y_start) + y_thick,
                   color);
