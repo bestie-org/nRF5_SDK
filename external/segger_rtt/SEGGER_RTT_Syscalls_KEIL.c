@@ -378,6 +378,14 @@ void _sys_exit(int ReturnCode) {
   while (1);  // Not implemented
 }
 
+int fputc(int ch, FILE * p_file)
+{
+    UNUSED_PARAMETER(p_file);
+ 	UNUSED_VARIABLE(SEGGER_RTT_Write(0, &ch, 1));
+	
+    return 0;
+}
+
 #endif // __CC_ARM
 #endif // !defined(RETARGET_ENABLED) || RETARGET_ENABLED == 0
 /*************************** End of file ****************************/
