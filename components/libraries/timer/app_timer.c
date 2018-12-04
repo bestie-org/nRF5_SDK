@@ -38,7 +38,7 @@
  *
  */
 #include "sdk_common.h"
-#if NRF_MODULE_ENABLED(APP_TIMER)
+#if NRF_MODULE_ENABLED(APP_TIMER) && !defined APP_TIMER_V2
 #include "app_timer.h"
 #include <stdlib.h>
 #include "nrf.h"

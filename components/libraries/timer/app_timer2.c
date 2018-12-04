@@ -37,6 +37,10 @@
  * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
+ 
+#include "sdk_common.h"
+#if NRF_MODULE_ENABLED(APP_TIMER) && defined APP_TIMER_V2
+
 #include "app_timer.h"
 #include "nrf_atfifo.h"
 #include "nrf_sortlist.h"
@@ -718,3 +722,5 @@ void app_timer_resume(void)
 {
     drv_rtc_start(&m_rtc_inst);
 }
+
+#endif

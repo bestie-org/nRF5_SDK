@@ -38,6 +38,10 @@
  *
  */
 
+#include <sdk_config.h>
+
+#ifdef APP_TIMER_V2
+
 #include <nrfx.h>
 #include <nrf_delay.h>
 #include <drv_rtc.h>
@@ -360,4 +364,6 @@ void drv_rtc_rtc_2_irq_handler(void)
 {
     m_handlers[DRV_RTC_RTC2_INST_IDX](m_cb[DRV_RTC_RTC2_INST_IDX].p_instance);
 }
+#endif
+
 #endif
