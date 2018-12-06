@@ -441,6 +441,50 @@ static void on_rw_authorize_request(nrf_ble_qwr_t         * p_qwr,
 #endif
 }
 
+/**@brief Handle a write event with BLE_GATTS_OP_EXEC_WRITE_REQ_NOW.
+ *
+ * per "GATTS Queued Writes: Stack handled, no attributes require authorization" S132 sequence chart
+ *
+ * @param[in]   p_qwr        QWR structure.
+ * @param[in]   p_gatts_evt  write event to be handled.
+ */
+static void on_write(nrf_ble_qwr_t         * p_qwr,
+                                    ble_gatts_evt_t const * p_gatts_evt)
+{
+#if (NRF_BLE_QWR_MAX_ATTR > 0)
+	const ble_gatts_evt_write_t* const p_evt=&p_gatts_evt->params.write;
+	
+	if(p_evt->op!=BLE_GATTS_OP_EXEC_WRITE_REQ_NOW) return;
+	
+	//parse stack supplied memory to find attribute handle 
+	//source: http://infocenter.nordicsemi.com/index.jsp?topic=%2Fcom.nordic.infocenter.s132.api.v6.1.0%2Fgroup___b_l_e___g_a_t_t_s___q_u_e_u_e_d___w_r_i_t_e___e_x_e_c_u_t_e___w_i_t_h_o_u_t___p_r_e_p_a_r_e___m_s_c.html
+	uint16_t attr_handle=uint16_decode(&p_qwr->mem_buffer.p_mem[0]);
+	
+	bool handle_registered=false;
+	
+	//check if attribute was registered in nrf_ble_qwr
+	for(uint8_t i=0;i<p_qwr->nb_registered_attr; i++)
+	{	
+		if(attr_handle==p_qwr->attr_handles[i])
+		{
+			handle_registered=true;
+			break;
+		}
+	}
+	
+	//attribute not found, abort
+	if(!handle_registered) return;
+	
+	//attribute found, propagate event to callback
+	nrf_ble_qwr_evt_t qwr_evt={
+		.attr_handle=attr_handle,
+		.evt_type=NRF_BLE_QWR_EVT_EXECUTE_WRITE
+	};
+	
+	p_qwr->callback(p_qwr, &qwr_evt);
+#endif
+}
+										
 
 void nrf_ble_qwr_on_ble_evt(ble_evt_t const * p_ble_evt, void * p_context)
 {
@@ -470,6 +514,10 @@ void nrf_ble_qwr_on_ble_evt(ble_evt_t const * p_ble_evt, void * p_context)
             on_rw_authorize_request(p_qwr, &p_ble_evt->evt.gatts_evt);
             break; // BLE_GATTS_EVT_RW_AUTHORIZE_REQUEST
 
+		case BLE_GATTS_EVT_WRITE:
+			on_write(p_qwr, &p_ble_evt->evt.gatts_evt);
+			break;
+		
         case BLE_GAP_EVT_DISCONNECTED:
             if (p_ble_evt->evt.gap_evt.conn_handle == p_qwr->conn_handle)
             {
