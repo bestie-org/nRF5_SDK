@@ -26,8 +26,6 @@
 *.pch
 
 # Libraries
-*.lib
-*.a
 *.la
 *.lo
 
@@ -221,25 +219,3 @@ $RECYCLE.BIN/
 # allow softdevice .hex
 !components/softdevice/*/hex/*.hex
 !components/softdevice/mbr/*/hex/*.hex
-
-# allow bundled libraries
-!components/802_15_4/raw/*.a
-!components/802_15_4/raw/*.lib
-!components/802_15_4/secure/*.a
-!components/802_15_4/secure/*.lib
-!components/nfc/t2t_lib/*.a
-!components/nfc/t2t_lib/*.lib
-!components/proprietary_rf/gzll/*/*.a
-!components/proprietary_rf/gzll/*/*.lib
-!components/toolchain/cmsis/dsp/*/.a
-!components/toolchain/cmsis/dsp/*/.lib
-!external/nrf_cc310/lib/*.a
-!external/nrf_cc310/lib/*.lib
-!external/nrf_cc310_bl/lib/*.a
-!external/nrf_cc310_bl/lib/*.lib
-!external/nrf_oberon/lib/*/*.a
-!external/nrf_oberon/lib/*/*.lib
-
-# allow microecc library
-!external/micro-ecc/*/armgcc/*.a
-!external/micro-ecc/*/armgcc/*.lib
