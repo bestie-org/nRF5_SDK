@@ -44,6 +44,15 @@
 #include "nrf_ble_gq.h"
 
 #define NRF_LOG_MODULE_NAME nrf_ble_gq
+
+#if NRF_BLE_GQ_QUEUE_CONFIG_LOG_ENABLED
+#define NRF_LOG_LEVEL       NRF_BLE_GQ_QUEUE_CONFIG_LOG_LEVEL
+#define NRF_LOG_INFO_COLOR  NRF_BLE_GQ_QUEUE_CONFIG_INFO_COLOR
+#define NRF_LOG_DEBUG_COLOR NRF_BLE_GQ_QUEUE_CONFIG_DEBUG_COLOR
+#else
+#define NRF_LOG_LEVEL       3
+#endif
+
 #include "nrf_log.h"
 NRF_LOG_MODULE_REGISTER();
 
@@ -267,7 +276,7 @@ static void queue_process(nrf_queue_t const * const p_queue, uint16_t conn_handl
                 break;
         }
 
-        if (err_code == NRF_ERROR_BUSY) // Softdevice is processing another GATT request.
+        if ((err_code == NRF_ERROR_BUSY) || (err_code == NRF_ERROR_RESOURCES)) // Softdevice is processing another GATT request.
         {
             NRF_LOG_DEBUG("SD is currently busy. The GATT request procedure will be attempted \
                           again later.");
@@ -395,7 +404,7 @@ static bool request_process(nrf_ble_gq_req_t const * const p_req, uint16_t conn_
             break;
     }
 
-    if (err_code == NRF_ERROR_BUSY) // Softdevice is processing another GATT request.
+    if ((err_code == NRF_ERROR_BUSY) || (err_code == NRF_ERROR_RESOURCES)) // Softdevice is processing another GATT request.
     {
         NRF_LOG_DEBUG("SD is currently busy. The GATT request procedure will be attempted \
                       again later.");
