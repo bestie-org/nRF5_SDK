@@ -65,7 +65,7 @@ Revision: $Rev: 4351 $
 */
 #include "sdk_config.h"
 #if !defined(RETARGET_ENABLED) || RETARGET_ENABLED == 0
-#if defined(NRF_LOG_USES_RTT) && NRF_LOG_USES_RTT == 1
+#if defined(NRF_LOG_BACKEND_RTT_ENABLED) && NRF_LOG_BACKEND_RTT_ENABLED == 1
 #if (defined __GNUC__) && !(defined __SES_ARM) && !(defined __CROSSWORKS_ARM)
 
 #include <reent.h>  // required for _write_r
@@ -91,7 +91,7 @@ struct _reent;
 **********************************************************************
 */
 int _write(int file, char *ptr, int len);
-_ssize_t _write_r _PARAMS ((struct _reent *, int, const void *, size_t));
+_ssize_t _write_r(struct _reent *, int, const void *, size_t);
 
 /*********************************************************************
 *
@@ -126,7 +126,7 @@ int _write(int file, char *ptr, int len) {
 *   including stdout.
 *   Write data via RTT.
 */
-_ssize_t _write_r _PARAMS((struct _reent *r, int file, const void *ptr, size_t len)) {
+_ssize_t _write_r(struct _reent *r, int file, const void *ptr, size_t len) {
   (void) file;  /* Not used, avoid warning */
   (void) r;     /* Not used, avoid warning */
   SEGGER_RTT_Write(0, ptr, len);
