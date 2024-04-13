@@ -142,7 +142,7 @@ extern "C" {
 
 
 /** @defgroup BLE_GATT_CPF_FORMATS Characteristic Presentation Formats
- *  @note Found at http://developer.bluetooth.org/gatt/descriptors/Pages/DescriptorViewer.aspx?u=org.bluetooth.descriptor.gatt.characteristic_presentation_format.xml
+ *  @note Found at https://www.bluetooth.com/specifications/assigned-numbers/format-types/
  * @{ */
 #define BLE_GATT_CPF_FORMAT_RFU                 0x00 /**< Reserved For Future Use. */
 #define BLE_GATT_CPF_FORMAT_BOOLEAN             0x01 /**< Boolean. */

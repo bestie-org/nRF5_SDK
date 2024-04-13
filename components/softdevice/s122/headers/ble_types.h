@@ -101,7 +101,7 @@ extern "C" {
 
 
 /** @defgroup BLE_APPEARANCES Bluetooth Appearance values
- *  @note Retrieved from http://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.gap.appearance.xml
+ *  @note Retrieved from https://specificationrefs.bluetooth.com/assigned-values/Appearance%20Values.pdf
  * @{ */
 #define BLE_APPEARANCE_UNKNOWN                                0 /**< Unknown. */
 #define BLE_APPEARANCE_GENERIC_PHONE                         64 /**< Generic Phone. */

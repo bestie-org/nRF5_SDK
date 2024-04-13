@@ -250,7 +250,7 @@ enum BLE_GAP_LL_ROLES
 #define BLE_GAP_ADV_REPORT_SET_ID_NOT_AVAILABLE                    0xFF
 
 /**@defgroup BLE_GAP_AD_TYPE_DEFINITIONS GAP Advertising and Scan Response Data format
- * @note Found at https://www.bluetooth.org/Technical/AssignedNumbers/generic_access_profile.htm
+ * @note Found at https://www.bluetooth.com/specifications/assigned-numbers/generic-access-profile/
  * @{ */
 #define BLE_GAP_AD_TYPE_FLAGS                               0x01 /**< Flags for discoverability. */
 #define BLE_GAP_AD_TYPE_16BIT_SERVICE_UUID_MORE_AVAILABLE   0x02 /**< Partial list of 16 bit service UUIDs. */
@@ -1603,7 +1603,6 @@ SVCALL(SD_BLE_GAP_PRIVACY_GET, uint32_t, sd_ble_gap_privacy_get(ble_gap_privacy_
  *                                   - Link has not been established.
  * @retval ::NRF_ERROR_BUSY Procedure already in progress, wait for pending procedures to complete and retry.
  * @retval ::BLE_ERROR_INVALID_CONN_HANDLE Invalid connection handle supplied.
- * @retval ::NRF_ERROR_NO_MEM Not enough memory to complete operation.
  */
 SVCALL(SD_BLE_GAP_CONN_PARAM_UPDATE, uint32_t, sd_ble_gap_conn_param_update(uint16_t conn_handle, ble_gap_conn_params_t const *p_conn_params));
 
@@ -1642,6 +1641,8 @@ SVCALL(SD_BLE_GAP_DISCONNECT, uint32_t, sd_ble_gap_disconnect(uint16_t conn_hand
  * @param[in] tx_power Radio transmit power in dBm (see note for accepted values).
  *
  * @note Supported tx_power values: -40dBm, -20dBm, -16dBm, -12dBm, -8dBm, -4dBm, 0dBm, +3dBm and +4dBm.
+ *       In addition, on some chips following values are supported: +2dBm, +5dBm, +6dBm, +7dBm and +8dBm.
+ *       Setting these values on a chip that does not support them will result in undefined behaviour.
  * @note The initiator will have the same transmit power as the scanner.
  * @note When a connection is created it will inherit the transmit power from the initiator or
  *       advertiser leading to the connection.
