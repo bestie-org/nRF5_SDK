@@ -133,6 +133,22 @@ _ssize_t _write_r(struct _reent *r, int file, const void *ptr, size_t len) {
   return len;
 }
 
+long _lseek(int handle, long offset, int whence)
+{
+    return 0;
+}
+int _close(int handle)
+{
+    return 0;
+}
+
+size_t _read(int handle, unsigned char * buffer, size_t size)
+{
+    UNUSED_PARAMETER(handle);
+    
+	return SEGGER_RTT_Read(0, buffer, size);
+}
+
 #endif // #if (defined __GNUC__) && !(defined __SES_ARM) && !(defined __CROSSWORKS_ARM)
 #endif // defined(NRF_LOG_USES_RTT) && NRF_LOG_USES_RTT == 1
 #endif // !defined(RETARGET_ENABLED) || RETARGET_ENABLED == 0
