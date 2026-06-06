@@ -1,0 +1,8 @@
+# Prevent accidentally commiting ANT+ softdevices
+# those are not covered by public distribution license
+
+*
+!toolchain/armgcc/armgcc_*.ld
+!toolchain/iar/iar_*.icf
+!headers/readme.txt
+!.gitignore
