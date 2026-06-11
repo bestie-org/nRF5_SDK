@@ -275,8 +275,13 @@ endef
 %.cpp.o:
 	$(call run,$(CXX),$(CFLAGS) $(CXXFLAGS),Compiling)
 
-# Create object files from assembly source files
-%.S.o %.s.o.o:
+# Create object files from assembly source files.
+# Split into separate rules to avoid "pattern recipe did not update
+# peer target" warnings in GNU Make >= 4.3.
+%.S.o:
+	$(call run,$(CC) -x assembler-with-cpp,$(ASMFLAGS),Assembling)
+
+%.s.o.o:
 	$(call run,$(CC) -x assembler-with-cpp,$(ASMFLAGS),Assembling)
 
 ifeq ($(PASS_LINKER_INPUT_VIA_FILE),1)
